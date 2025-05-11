@@ -212,7 +212,7 @@ function App() {
     <div className="min-h-screen w-full" style={{ background: 'var(--background)', color: 'var(--text)' }}>
       {/* Navigation */}
       <nav className="fixed w-full shadow-sm z-50" style={{ background: 'var(--background)', borderBottom: '1px solid var(--secondary)' }}>
-        <div className="w-full max-w-[1440px] mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>SoftSell</div>
           <div className="hidden md:flex space-x-6">
             <a href="#how-it-works" className="hover:underline" style={{ color: 'var(--text)' }}>How It Works</a>
@@ -224,24 +224,24 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="w-full pt-24 pb-12 md:pt-32 md:pb-20" style={{ background: 'linear-gradient(to right, var(--secondary), var(--background))' }}>
-        <div className="max-w-4xl mx-auto px-4">
+      <section className="w-full pt-28 pb-10 md:pt-32 md:pb-20" style={{ background: 'linear-gradient(to right, var(--secondary), var(--background))' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: 'var(--text)' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6" style={{ color: 'var(--text)' }}>
               Turn Your Software Licenses Into Cash
             </h1>
-            <p className="text-xl mb-8" style={{ color: 'var(--text)' }}>
+            <p className="text-base sm:text-lg md:text-xl mb-6 md:mb-8" style={{ color: 'var(--text)' }}>
               SoftSell helps businesses and individuals sell their unused software licenses quickly and securely. Get the best value for your digital assets.
             </p>
             <motion.button
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.97 }}
-              className="px-8 py-3 rounded-lg text-lg font-semibold transition-colors"
+              className="px-6 py-3 sm:px-8 sm:py-3 rounded-lg text-base sm:text-lg font-semibold transition-colors w-full sm:w-auto"
               style={{ background: 'var(--primary)', color: 'var(--background)' }}
             >
               Get a Quote
@@ -251,10 +251,10 @@ function App() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="w-full py-16" style={{ background: 'var(--background)' }}>
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--text)' }}>How It Works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section id="how-it-works" className="w-full py-12 md:py-16" style={{ background: 'var(--background)' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12" style={{ color: 'var(--text)' }}>How It Works</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}
@@ -263,7 +263,7 @@ function App() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={howItWorksVariants}
-                className="text-center p-6"
+                className="text-center p-5 sm:p-6 md:p-6"
                 style={{ background: 'var(--secondary)', borderRadius: '1rem' }}
               >
                 {/* Icon and content for each card */}
@@ -301,10 +301,10 @@ function App() {
       </section>
 
       {/* Why Choose Us Section (animated) */}
-      <section id="why-us" className="w-full py-16" style={{ background: 'var(--secondary)' }}>
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--primary)' }}>Why Choose Us</h2>
-          <div className="grid md:grid-cols-4 gap-8">
+      <section id="why-us" className="w-full py-12 md:py-16" style={{ background: 'var(--secondary)' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12" style={{ color: 'var(--primary)' }}>Why Choose Us</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {[0, 1, 2, 3].map((i) => (
               <motion.div
                 key={i}
@@ -313,7 +313,7 @@ function App() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={whyUsVariants}
-                className="p-6 rounded-lg shadow-sm"
+                className="p-5 sm:p-6 md:p-6 rounded-lg shadow-sm"
                 style={{ background: 'var(--background)' }}
               >
                 {/* Icon and content for each tile */}
@@ -356,10 +356,10 @@ function App() {
       </section>
 
       {/* Testimonials Section (animated) */}
-      <section id="testimonials" className="w-full py-16" style={{ background: 'var(--background)' }}>
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--primary)' }}>What Our Clients Say</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+      <section id="testimonials" className="w-full py-12 md:py-16" style={{ background: 'var(--background)' }}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12" style={{ color: 'var(--primary)' }}>What Our Clients Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[0, 1].map((i) => (
               <motion.div
                 key={i}
@@ -368,7 +368,7 @@ function App() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={testimonialVariants}
-                className="p-6 rounded-lg"
+                className="p-5 sm:p-6 md:p-6 rounded-lg"
                 style={{ background: 'var(--secondary)' }}
               >
                 {i === 0 && (
@@ -404,17 +404,17 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="w-full py-16" style={{ background: 'var(--secondary)' }}>
-        <div className="max-w-2xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12" style={{ color: 'var(--primary)' }}>Get in Touch</h2>
+      <section id="contact" className="w-full py-12 md:py-16" style={{ background: 'var(--secondary)' }}>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12" style={{ color: 'var(--primary)' }}>Get in Touch</h2>
           <ContactForm />
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="w-full py-12" style={{ background: 'var(--primary)', color: 'var(--background)' }}>
-        <div className="w-full max-w-[1440px] mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
+      <footer className="w-full py-8 md:py-12" style={{ background: 'var(--primary)', color: 'var(--background)' }}>
+        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">SoftSell</h3>
               <p style={{ color: 'var(--background)' }}>
