@@ -205,154 +205,70 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-4 right-20 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-80 sm:w-96 h-[500px] rounded-lg shadow-xl flex flex-col"
-            style={{
-              background: "var(--background)",
-              border: "1px solid var(--secondary)",
-            }}
+            className="fixed bottom-20 right-4 w-96 h-[600px] bg-white dark:bg-card-dark rounded-lg shadow-xl flex flex-col overflow-hidden"
           >
-            <div
-              className="p-4 border-b"
-              style={{ borderColor: "var(--secondary)" }}
-            >
-              <div className="flex justify-between items-center">
-                <h3
-                  className="font-semibold"
-                  style={{ color: "var(--primary)" }}
-                >
-                  SoftSell Assistant
-                </h3>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-1 rounded-full hover:bg-gray-100"
-                  style={{ color: "var(--text)" }}
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
+            {/* Chat Header */}
+            <div className="p-4 bg-primary dark:bg-primary-dark text-white">
+              <h3 className="text-lg font-semibold">SoftSell Assistant</h3>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {/* Messages Container */}
+            <div
+              ref={messagesEndRef}
+              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-background-dark"
+            >
               {messages.map((message, index) => (
-                <div key={index} className="space-y-2">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex ${message.role === "user" ? 'justify-end' : 'justify-start'}`}
+                >
                   <div
-                    className={`flex ${
-                      message.role === "user" ? "justify-end" : "justify-start"
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.role === "user"
+                        ? 'bg-primary dark:bg-primary-dark text-white'
+                        : 'bg-white dark:bg-card-dark text-gray-800 dark:text-text-dark shadow'
                     }`}
                   >
-                    <div
-                      className={`max-w-[80%] rounded-lg p-3 ${
-                        message.role === "user"
-                          ? "rounded-br-none"
-                          : "rounded-bl-none"
-                      }`}
-                      style={{
-                        background:
-                          message.role === "user"
-                            ? "var(--primary)"
-                            : "var(--secondary)",
-                        color:
-                          message.role === "user"
-                            ? "var(--background)"
-                            : "var(--text)",
-                      }}
-                    >
-                      {message.content}
-                    </div>
+                    {message.content}
                   </div>
-                  {message.suggestions && (
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {message.suggestions.map((suggestion, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleSuggestionClick(suggestion)}
-                          className="text-sm px-3 py-1 rounded-full transition-colors"
-                          style={{
-                            background: "var(--primary)",
-                            color: "var(--background)",
-                            opacity: 0.9,
-                          }}
-                        >
-                          {suggestion}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                </motion.div>
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div
-                    className="max-w-[80%] rounded-lg rounded-bl-none p-3"
-                    style={{
-                      background: "var(--secondary)",
-                      color: "var(--text)",
-                    }}
-                  >
+                  <div className="bg-white dark:bg-card-dark text-gray-800 dark:text-text-dark rounded-lg p-3 shadow">
                     <div className="flex space-x-2">
-                      <div
-                        className="w-2 h-2 rounded-full animate-bounce"
-                        style={{ background: "var(--primary)" }}
-                      ></div>
-                      <div
-                        className="w-2 h-2 rounded-full animate-bounce"
-                        style={{ background: "var(--primary)" }}
-                      ></div>
-                      <div
-                        className="w-2 h-2 rounded-full animate-bounce"
-                        style={{ background: "var(--primary)" }}
-                      ></div>
+                      <div className="w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" />
+                      <div className="w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce delay-100" />
+                      <div className="w-2 h-2 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce delay-200" />
                     </div>
                   </div>
                 </div>
               )}
-              <div ref={messagesEndRef} />
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="p-4 border-t"
-              style={{ borderColor: "var(--secondary)" }}
-            >
+            {/* Input Form */}
+            <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 dark:border-border-dark bg-white dark:bg-card-dark">
               <div className="flex space-x-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask about SoftSell..."
-                  className="flex-1 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--primary)]"
-                  style={{
-                    background: "var(--secondary)",
-                    color: "var(--text)",
-                  }}
+                  className="flex-1 p-2 border border-gray-300 dark:border-border-dark rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-dark bg-white dark:bg-background-dark text-gray-800 dark:text-text-dark"
                 />
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
-                  style={{
-                    background: "var(--primary)",
-                    color: "var(--background)",
-                  }}
+                  className="px-4 py-2 bg-primary dark:bg-primary-dark text-white rounded-lg hover:bg-primary/90 dark:hover:bg-primary-dark/90 transition-colors disabled:opacity-50"
                 >
                   Send
                 </button>
@@ -362,12 +278,12 @@ const Chatbot = () => {
         )}
       </AnimatePresence>
 
+      {/* Chat Toggle Button */}
       <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-12 h-12 bg-primary dark:bg-primary-dark text-white rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full shadow-lg flex items-center justify-center"
-        style={{ background: "var(--primary)", color: "var(--background)" }}
       >
         {isOpen ? (
           <svg
@@ -375,11 +291,12 @@ const Chatbot = () => {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth={2}
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
@@ -389,11 +306,12 @@ const Chatbot = () => {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth={2}
               d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
             />
           </svg>

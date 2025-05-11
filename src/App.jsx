@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import './App.css'
 import Chatbot from './components/Chatbot'
+import { ThemeProvider, useTheme } from './context/ThemeContext'
+import NavbarThemeToggle from './components/NavbarThemeToggle'
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -208,18 +210,28 @@ const testimonialVariants = {
   }),
 }
 
-function App() {
+// Create a wrapper component that uses the theme
+function AppContent() {
+  const { isDarkMode } = useTheme();
+  
+  // Add console logging for theme state
+  console.log('Current theme state:', {
+    isDarkMode,
+    themeClass: isDarkMode ? 'dark-mode-active' : 'light-mode-active'
+  });
+
   return (
-    <div className="min-h-screen w-full" style={{ background: 'var(--background)', color: 'var(--text)' }}>
+    <div className={`min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 ${isDarkMode ? 'dark-mode-active' : 'light-mode-active'}`}>
       {/* Navigation */}
-      <nav className="fixed w-full shadow-sm z-50" style={{ background: 'var(--background)', borderBottom: '1px solid var(--secondary)' }}>
+      <nav className="fixed w-full shadow-sm z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold" style={{ color: 'var(--primary)' }}>SoftSell</div>
-          <div className="hidden md:flex space-x-6">
-            <a href="#how-it-works" className="hover:underline" style={{ color: 'var(--text)' }}>How It Works</a>
-            <a href="#why-us" className="hover:underline" style={{ color: 'var(--text)' }}>Why Choose Us</a>
-            <a href="#testimonials" className="hover:underline" style={{ color: 'var(--text)' }}>Testimonials</a>
-            <a href="#contact" className="hover:underline" style={{ color: 'var(--text)' }}>Contact</a>
+          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">SoftSell</div>
+          <div className="hidden md:flex items-center space-x-6">
+            <a href="#how-it-works" className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">How It Works</a>
+            <a href="#why-us" className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Why Choose Us</a>
+            <a href="#testimonials" className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Testimonials</a>
+            <a href="#contact" className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
+            <NavbarThemeToggle />
           </div>
         </div>
       </nav>
@@ -462,4 +474,12 @@ function App() {
   )
 }
 
-export default App
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}
+
+export default App;

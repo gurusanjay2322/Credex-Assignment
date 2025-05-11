@@ -13,6 +13,7 @@ SoftSell is a demo project showcasing a modern web application built with React 
 - Smooth scroll to sections
 - Active section highlighting
 - Sticky header on scroll
+- Dark mode toggle
 
 ### Hero Section
 - Animated headline and subheading
@@ -64,16 +65,26 @@ SoftSell is a demo project showcasing a modern web application built with React 
 ## Design Choices
 
 ### Color Scheme
+
+#### Light Mode
 - Primary: #2563EB (Blue)
 - Secondary: #F3F4F6 (Light Gray)
 - Background: #FFFFFF (White)
 - Text: #1F2937 (Dark Gray)
 - Accent: #10B981 (Green)
 
+#### Dark Mode
+- Primary: #3B82F6 (Bright Blue)
+- Secondary: #1F2937 (Dark Gray)
+- Background: #111827 (Dark Background)
+- Text: #F9FAFB (Light Gray)
+- Accent: #34D399 (Bright Green)
+- Card Background: #1F2937 (Dark Card)
+- Border: #374151 (Dark Border)
+
 ### Typography
 - Headings: Inter (Sans-serif)
 - Body: System UI
-
 
 ### Responsive Breakpoints
 - Mobile: < 640px
