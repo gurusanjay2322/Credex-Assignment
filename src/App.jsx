@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import './App.css'
+import Chatbot from './components/Chatbot'
 
 function ContactForm() {
   const [formData, setFormData] = useState({
@@ -141,7 +142,7 @@ function ContactForm() {
           </select>
           {errors.licenseType && <p className="mt-1 text-sm" style={{ color: 'red' }}>{errors.licenseType}</p>}
         </div>
-        <div>
+      <div>
           <label htmlFor="message" className="block text-sm font-medium mb-1" style={{ color: 'var(--text)' }}>Message</label>
           <textarea
             id="message"
@@ -154,7 +155,7 @@ function ContactForm() {
             placeholder="How can we help you?"
           />
           {errors.message && <p className="mt-1 text-sm" style={{ color: 'red' }}>{errors.message}</p>}
-        </div>
+      </div>
         <button
           type="submit"
           className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-lg font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 transition-all"
@@ -419,8 +420,8 @@ function App() {
               <h3 className="text-xl font-bold mb-4">SoftSell</h3>
               <p style={{ color: 'var(--background)' }}>
                 Your trusted partner in software license resale. We help businesses and individuals get the best value for their unused software licenses.
-              </p>
-            </div>
+        </p>
+      </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2">
@@ -454,6 +455,9 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Chatbot */}
+      <Chatbot />
     </div>
   )
 }
